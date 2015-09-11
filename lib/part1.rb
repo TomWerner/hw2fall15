@@ -25,37 +25,16 @@
 #instructions specified in the assignment description to hand-in your work.
 
 def palindrome?(str)
-  # YOUR CODE HERE
+  stripped = str.to_s.downcase.gsub(/[^0-9a-z]/, '')
+  return stripped == stripped.reverse
 end
 
 def count_words(str)
-  # YOUR CODE HERE
+  result = {}
+  result.default = 0
+  str.split.each do |item|
+    string = item.downcase.gsub(/(^[^a-z0-9]|[^a-z0-9]$)/, '')
+    result[string] += 1 unless string.length == 0
+  end
+  return result
 end
-
-
-#the code below this line will test your functions. 
-#You should remove everything below this line prior to submitting your file
-
-
-test_str = "there goes the neighborhood"
-
-if palindrome? test_str
-  puts test_str + " is a palindrome!"
-else
-  puts test_str + " is NOT a palindrome!"
-end
-
-
-test_str = "Madam, I'm Adam"
-
-if palindrome? test_str
-  puts test_str + " is a palindrome!"
-else
-  puts test_str + " is NOT a palindrome!"
-end
-
-
-test_str = "The rent is due on the first day of the month unless the first day of the month falls on a Saturday or Sunday"
-
-word_count = count_words test_str
-puts word_count
